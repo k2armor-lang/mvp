@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>한국사Ⅱ 시대별 학습관</title>
+  <style>
+    :root{--ink:#172033;--muted:#5d687b;--line:#d8dee9;--paper:#fff;--bg:#f3f6fb;--blue:#1d4ed8;--easy:#15803d;--mid:#b45309;--hard:#b91c1c}
+    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR","Malgun Gothic",sans-serif;line-height:1.65}
+    .wrap{max-width:1180px;margin:0 auto;padding:28px 18px 60px}.paper{background:var(--paper);padding:34px 42px;box-shadow:0 10px 35px #17203312;border-radius:24px}
+    header{position:relative;overflow:hidden;background:linear-gradient(135deg,#172554,#1d4ed8 58%,#38bdf8);color:#fff;border:0;border-radius:20px;padding:34px;margin-bottom:22px;box-shadow:0 14px 35px #1d4ed833;min-height:190px}header:after{content:"";position:absolute;right:-120px;top:-180px;width:420px;height:420px;border:1px solid #ffffff38;border-radius:50%;box-shadow:0 0 0 35px #ffffff0d,0 0 0 70px #ffffff08} .hero-copy{position:relative;z-index:1;max-width:66%} h1{font-size:32px;text-align:left;margin:0 0 8px;letter-spacing:-.04em} header>div{opacity:.88}    .hero-cat{position:absolute;z-index:1;right:22px;bottom:-30px;width:190px;height:190px;object-fit:contain;filter:drop-shadow(0 14px 10px #07143d55);transform:rotate(3deg);transition:transform .25s ease}.hero-cat:hover{transform:rotate(-3deg) translateY(-7px) scale(1.04)}
+    .meta{display:none}.notice{background:#eef4ff;border-left:5px solid var(--blue);padding:12px 16px;margin:18px 0;font-size:14px;border-radius:10px}
+    .dashboard{display:grid;grid-template-columns:1.1fr 1fr 1fr 1fr;gap:14px;margin:20px 0}        .stat,.era-card{background:linear-gradient(145deg,#fff,#f4f7ff);border:1px solid #cbd5e1;border-radius:16px;padding:18px;box-shadow:0 8px 0 #cbd5e1,0 14px 24px #17203312}.stat strong{display:block;font-size:25px;color:var(--blue)}.stat span{color:var(--muted);font-size:13px}.stat{position:relative;overflow:hidden}.stat:after{content:"🐾";position:absolute;right:16px;bottom:12px;font-size:30px;opacity:.2}.era-card{cursor:pointer;transition:transform .16s ease,box-shadow .16s ease;border-top:4px solid var(--blue);text-align:left;appearance:none}.era-card:hover{transform:translateY(-4px);box-shadow:0 12px 0 #bfdbfe,0 18px 28px #1720331c}.era-card:active{transform:translateY(3px);box-shadow:0 3px 0 #bfdbfe,0 7px 12px #17203318}.era-card:hover{transform:translateY(-3px);box-shadow:0 10px 22px #17203316}.era-card h3{margin:0 0 5px}.era-card p{margin:0;font-size:13px;color:var(--muted)}.era-card .era-progress{margin-top:12px;font-size:12px;color:var(--blue);font-weight:700}
+    .era-panel{display:none}.era-panel.active{display:block}.era-title{display:flex;align-items:end;justify-content:space-between;gap:16px;margin:32px 0 12px}.era-title h2{margin:0;font-size:24px;letter-spacing:-.03em}.era-title p{margin:0;color:var(--muted);font-size:13px}
+    .problem-nav{display:none;align-items:center;justify-content:space-between;gap:12px;margin:18px 0 8px}.problem-nav.show{display:flex}.back-btn,.reset{border:1px solid #93c5fd;background:linear-gradient(180deg,#fff,#eff6ff);color:#1e40af;border-radius:10px;padding:9px 14px;cursor:pointer;font-weight:700;box-shadow:0 4px 0 #bfdbfe,0 7px 12px #1d4ed822;transition:transform .12s,box-shadow .12s}.back-btn:hover,.reset:hover{transform:translateY(-2px)}.back-btn:active,.reset:active{transform:translateY(2px);box-shadow:0 2px 0 #bfdbfe}.problem-label{font-size:14px;color:var(--muted);font-weight:700}
+    .era-tip{display:flex;align-items:center;gap:12px;background:linear-gradient(100deg,#fff7ed,#fffbeb);border:1px solid #fed7aa;border-radius:14px;padding:12px 16px;color:#9a3412;font-size:14px;margin:12px 0 18px}.era-tip::before{content:"🐱";font-size:25px}.question-count{display:inline-flex;align-items:center;gap:6px;background:#eff6ff;color:#1d4ed8;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:800}
+    .q{display:grid;grid-template-columns:auto minmax(0,1fr) auto;column-gap:10px;row-gap:8px;background:linear-gradient(145deg,#fff 0%,#fbfdff 100%);border:1px solid var(--line);border-radius:18px;padding:22px;margin:16px 0;box-shadow:0 7px 0 #e2e8f0,0 14px 25px #1720330c;transition:transform .18s,box-shadow .18s}.q:hover{transform:translateY(-3px);box-shadow:0 10px 0 #dbeafe,0 18px 30px #17203316}.qhead{display:contents}.q>p{grid-column:2;grid-row:1;margin:2px 0 0;font-weight:700;font-size:16px}.source{grid-column:1/-1;grid-row:2;margin:0}.choices{grid-column:1/-1;grid-row:3}.feedback{grid-column:1/-1;grid-row:4}.num{grid-column:1;grid-row:1;font-size:19px;font-weight:900;color:#1d4ed8}.badge{grid-column:3;grid-row:1;align-self:center;font-size:12px;font-weight:800;border-radius:999px;padding:3px 10px;color:#fff;box-shadow:inset 0 1px #ffffff66}.easy{background:var(--easy)}.mid{background:var(--mid)}.hard{background:var(--hard)}
+    .visual-source{background:#f8fafc}.visual-source svg{display:block;width:100%;max-height:190px;margin:5px auto 8px}.visual-caption{font-size:13px;color:var(--muted);text-align:center;margin:0}.visual-label{font-weight:700;color:#334155}
+    .pdf-image-source svg{display:none}.pdf-image{display:block;width:auto;max-width:100%;height:300px;object-fit:contain;margin:8px auto 10px}.pdf-image-source{padding:16px 20px}.pdf-image-source .visual-caption{display:none}
+    .source{background:linear-gradient(135deg,#f8fafc,#eef4ff);border:1px solid #c9d7ee;padding:15px 17px;margin:10px 0 12px;font-size:14px;border-radius:12px;position:relative}.source:before{content:"자료";position:absolute;right:12px;top:10px;font-size:11px;color:#64748b;font-weight:800;letter-spacing:.08em}.source strong{display:block;margin-bottom:5px;color:#334155}
+    .choices{list-style:none;padding:0;margin:8px 0 0}.choices li{margin:8px 0;padding:11px 14px;border:1px solid #d5ddeb;border-radius:10px;cursor:pointer;transition:transform .12s ease,box-shadow .12s ease,background .12s ease}.choices li:hover,.choices li:focus-visible{background:#eef4ff;border-color:#8fb0ef;outline:none;transform:translateY(-2px);box-shadow:0 4px 0 #c7d8f8}.choices li:active{transform:translateY(1px);box-shadow:none}.choices li.correct{background:#ecfdf3;border-color:#39a86b;color:#166534;box-shadow:0 4px 0 #bbf7d0}.choices li.wrong{background:#fff1f2;border-color:#e77b86;color:#9f1239;box-shadow:0 4px 0 #fecdd3}    .feedback{display:none;margin:12px 0 0;padding:14px 16px;border-radius:12px;font-size:14px}.feedback.show{display:block;animation:popIn .25s ease}.feedback.correct{background:#ecfdf3;border:1px solid #86efac;color:#166534}.feedback.wrong{background:#fff1f2;border:1px solid #fda4af;color:#9f1239}.feedback strong{display:block;margin-bottom:3px}@keyframes popIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+    .answer{margin-top:34px;border-top:3px solid var(--ink);padding-top:18px}.answer h2{font-size:22px}.answer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0 18px}.answer-grid div{border:1px solid var(--line);padding:7px;text-align:center;font-weight:700}
+    details{border:1px solid var(--line);margin:8px 0;padding:8px 12px}summary{cursor:pointer;font-weight:700}.explain{font-size:14px;color:#39465b;padding:8px 4px}
+    .print{position:fixed;right:22px;bottom:22px;border:0;background:var(--blue);color:white;padding:10px 16px;border-radius:8px;cursor:pointer;font-weight:700}
+    .progress{position:sticky;top:0;z-index:2;background:#172033;color:white;border-radius:8px;padding:10px 14px;margin:0 0 18px;font-size:14px;display:flex;justify-content:space-between;gap:12px}.reset{border:1px solid #93c5fd;background:transparent;color:white;border-radius:5px;padding:3px 9px;cursor:pointer}
+    @media print{body{background:white}.wrap{padding:0}.paper{box-shadow:none;padding:0}.print{display:none}.answer{page-break-before:always}}
+    @media(max-width:800px){.dashboard{grid-template-columns:1fr 1fr}.era-title{display:block}.era-title p{margin-top:4px}}@media(max-width:650px){.paper{padding:20px 14px}.dashboard{grid-template-columns:1fr}.answer-grid{grid-template-columns:repeat(2,1fr)}h1{font-size:25px}.hero-copy{max-width:100%;padding-right:80px}.hero-cat{right:-20px;bottom:-35px;width:135px;height:135px}.q{grid-template-columns:auto minmax(0,1fr);padding:16px}.badge{grid-column:2;grid-row:2;justify-self:start}.q>p{grid-column:2}.source,.choices,.feedback{grid-column:1/-1}}
+  </style>
+</head>
+<body>
+<main class="wrap"><article class="paper">
+  <header>
+    <div class="hero-copy"><h1>한국사Ⅱ 시대별 학습관</h1>
+    <div>일제 강점기부터 대한민국 정부 수립까지, 시대별 핵심 문제를 풀어 보세요.</div></div>
+    <img class="hero-cat" src="cat-mascot.svg" alt="한국사 공부 고양이 캐릭터">
+  </header>
+  <div class="meta"><span>전체 30문항 · 문항당 5점</span></div>
+  <div class="notice">※ 선지를 클릭하여 답을 선택하세요. 선택 즉시 정답 여부와 해설이 표시됩니다. 한 문항은 한 번만 채점되며, 아래의 다시 풀기 버튼으로 전체를 초기화할 수 있습니다.</div>
+  <div class="progress" aria-live="polite"><span id="progressText">풀이한 문제 0 / 30</span><span id="scoreText">현재 점수 0점 <button class="reset" type="button" onclick="resetQuiz()">다시 풀기</button></span></div>
+  <div class="dashboard" id="dashboard">
+    <div class="stat"><span>전체 학습 진행률</span><strong id="dashProgress">0%</strong><span id="dashScore">0점 · 30문항</span></div>
+    <button class="era-card" type="button" data-era="0"><h3>01 · 식민 통치</h3><p>1910년대 무단 통치부터 민족 말살 정책까지</p><div class="era-progress">0 / 10 완료</div></button>
+    <button class="era-card" type="button" data-era="1"><h3>02 · 민족 운동</h3><p>3·1 운동, 임시 정부, 무장 독립 투쟁</p><div class="era-progress">0 / 10 완료</div></button>
+    <button class="era-card" type="button" data-era="2"><h3>03 · 광복과 정부 수립</h3><p>해방 정국과 대한민국 정부 수립</p><div class="era-progress">0 / 10 완료</div></button>
+  </div>
+  <div class="era-tabs" id="eraTabs"></div>
+  <div class="problem-nav" id="problemNav"><button class="back-btn" id="backToMain" type="button">← 시대 선택으로</button><span class="problem-label" id="problemLabel">문제 풀이</span></div>
+
+  <section class="q"><div class="qhead"><span class="num">1.</span><span class="badge easy">하</span></div>
+    <div class="source"><strong>[자료]</strong>조선 총독은 무력에 기반한 경찰 제도를 운영하였고, 관리와 교원도 제복과 칼을 착용하게 하였다. 즉결 처분과 태형이 식민 통치의 수단으로 활용되었다.</div>
+    <p>이 시기의 통치 방식에 대한 설명으로 옳은 것은?</p>
+    <ol class="choices"><li>① 보통 경찰 제도를 실시하여 통치를 완화하였다.</li><li>② 헌병 경찰을 앞세운 무단 통치를 실시하였다.</li><li>③ 회사령을 폐지하고 기업 활동을 전면 보장하였다.</li><li>④ 조선인의 참정권을 인정하여 지방 자치를 확대하였다.</li><li>⑤ 민족 자치론을 수용하여 조선 총독부를 폐지하였다.</li></ol>
+  </section>
+
+  <section class="q"><div class="qhead"><span class="num">2.</span><span class="badge easy">하</span></div>
+    <div class="source"><strong>[자료]</strong>토지의 소유권을 신고하게 하고, 신고하지 않은 토지는 총독부가 소유권을 확정하였다. 사업 뒤 지주의 소유권은 인정되었지만 많은 농민은 경작권을 잃거나 소작농이 되었다.</div>
+    <p>자료에 해당하는 사업의 결과로 가장 적절한 것은?</p>
+    <ol class="choices"><li>① 농민에게 토지를 무상으로 분배하였다.</li><li>② 지세를 현물로만 납부하게 하였다.</li><li>③ 회사 설립을 허가제로 제한하였다.</li><li>④ 총독부가 토지 소유권을 확보하고 농민의 소작농화가 심해졌다.</li><li>⑤ 농촌 진흥 운동으로 자작농이 크게 증가하였다.</li></ol>
+  </section>
+
+  <section class="q"><div class="qhead"><span class="num">3.</span><span class="badge easy">하</span></div>
+    <div class="source visual-source"><strong>[사진 자료를 단순화한 포스터]</strong><svg viewBox="0 0 760 175" role="img" aria-label="1919년 3월 1일 독립 선언 포스터"><rect width="760" height="175" rx="8" fill="#fffdf5" stroke="#b45309" stroke-width="3"/><text x="380" y="45" text-anchor="middle" font-size="24" font-weight="700" fill="#9f1239">조선 독립 만세</text><text x="380" y="82" text-anchor="middle" font-size="16" fill="#334155">오등은 자에 조선의 독립국임과</text><text x="380" y="108" text-anchor="middle" font-size="16" fill="#334155">조선인의 자주민임을 선언하노라</text><circle cx="70" cy="88" r="35" fill="#e11d48"/><text x="70" y="99" text-anchor="middle" font-size="34" fill="white">太</text><circle cx="690" cy="88" r="35" fill="#1d4ed8"/><text x="690" y="99" text-anchor="middle" font-size="34" fill="white">極</text></svg><p class="visual-caption">1919년 3월 1일 독립 선언서의 핵심 문구를 재구성한 자료</p></div>
+    <p>자료와 관련된 운동의 영향으로 옳은 것은?</p>
+    <ol class="choices"><li>① 대한민국 임시 정부가 상하이에 수립되었다.</li><li>② 조선 총독부가 즉시 해체되었다.</li><li>③ 한일 의정서가 체결되었다.</li><li>④ 조선어 학회가 해산되었다.</li><li>⑤ 미군정이 남한에 수립되었다.</li></ol>
+  </section>
+
+  <section class="q"><div class="qhead"><span class="num">4.</span><span class="badge easy">하</span></div>
+    <div class="source"><strong>[자료]</strong>1920년대 일본은 헌병 경찰 대신 보통 경찰을 내세우고 언론·출판·집회의 형식을 일부 허용한다고 선전하였다. 그러나 치안 유지 법률로 독립운동과 사회 운동을 계속 탄압하였다.</div>
+    <p>자료에 나타난 통치 방식은?</p>
+    <ol class="choices"><li>① 무단 통치</li><li>② 문화 통치</li><li>③ 민족 말살 통치</li><li>④ 통감부 통치</li><li>⑤ 군정 통치</li></ol>
+  </section>
+
+  <section class="q"><div class="qhead"><span class="num">5.</span><span class="badge easy">하</span></div>
+    <div class="source"><strong>[자료]</strong>일본은 공업 원료와 식량을 확보하기 위해 조선에서 쌀 생산량을 늘리려 하였다. 하지만 증산량보다 일본으로 반출되는 양이 더 많아 조선 농민의 식량 사정은 악화되었다.</div>
+    <p>자료의 정책으로 옳은 것은?</p>
+    <ol class="choices"><li>① 산미 증식 계획</li><li>② 토지 조사 사업</li><li>③ 농촌 진흥 운동</li><li>④ 남면북양 정책</li><li>⑤ 회사령</li></ol>
+  </section>
+
+  <section class="q"><div class="qhead"><span class="num">6.</span><span class="badge mid">중</span></div>
+    <div class="source"><strong>[자료]</strong>A: “민족 산업을 보호하려면 우리 상품을 애용해야 한다.”<br>B: “민족 차별 교육에 맞서 학생들이 동맹 휴학과 시위를 벌였다.”</div>
+    <p>A와 B에 해당하는 민족 운동을 바르게 연결한 것은?</p>
+    <ol class="choices"><li>① A 물산 장려 운동 / B 광주 학생 항일 운동</li><li>② A 형평 운동 / B 원산 총파업</li><li>③ A 농촌 계몽 운동 / B 6·10 만세 운동</li><li>④ A 민립 대학 설립 운동 / B 봉오동 전투</li><li>⑤ A 국채 보상 운동 / B 의열단 활동</li></ol>
+  </section>
+
+  <section class="q"><div class="qhead"><span class="num">7.</span><span class="badge mid">중</span></div>
+    <div class="source"><strong>[자료]</strong>1927년 민족주의 세력과 사회주의 세력 일부가 “기회주의를 배격하고, 민족 단결을 도모한다.”는 취지로 단체를 결성하였다. 이 단체는 전국에 지회를 두고 강연과 야학을 운영하였다.</div>
+    <p>자료의 단체에 대한 설명으로 옳은 것은?</p>
+    <ol class="choices"><li>① 무장 독립군만으로 구성되었다.</li><li>② 민족 유일당 운동의 성과로 결성된 신간회이다.</li><li>③ 광복 직후 좌우 합작을 위해 결성되었다.</li><li>④ 만주에서 한국광복군을 지휘하였다.</li><li>⑤ 조선 총독부의 자문 기구였다.</li></ol>
+  </section>
+
+  <section class="q"><div class="qhead"><span class="num">8.</span><span class="badge mid">중</span></div>
+    <div class="source"><strong>[자료]</strong>한 독립운동 단체는 폭탄과 권총을 사용하여 조선 총독부·동양 척식 주식회사·일본 경찰 기관 등을 공격하였다. 단체의 선언에는 “민중은 우리 혁명의 대본영”이라는 내용이 담겼다.</div>
+    <p>자료의 단체와 가장 관련 깊은 인물은?</p>
+    <ol class="choices"><li>① 김구</li><li>② 신채호</li><li>③ 안창호</li><li>④ 박은식</li><li>⑤ 이승만</li></ol>
+  </section>
+
+  <section class="q"><div class="qhead"><span class="num">9.</span><span class="badge mid">중</span></div>
+    <div class="source"><strong>[자료]</strong>“우리 민족의 독립운동은 외교·군사·교육을 통합적으로 수행해야 한다.” 임시 정부는 이를 위해 대통령 중심제에서 국무령 중심제로, 다시 집단 지도 체제로 조직을 바꾸기도 하였다.</div>
+    <p>자료에 대한 설명으로 옳은 것은?</p>
+    <ol class="choices"><li>① 임시 정부는 국내에서만 활동하였다.</li><li>② 임시 정부는 3·1 운동 이후 수립되었다.</li><li>③ 임시 정부는 조선 총독부의 승인을 받아 운영되었다.</li><li>④ 임시 정부는 일본의 중일 전쟁 선포 뒤 처음 만들어졌다.</li><li>⑤ 임시 정부는 해방 후 미군정의 행정 기구가 되었다.</li></ol>
+  </section>
+
+  <section class="q"><div class="qhead"><span class="num">10.</span><span class="badge mid">중</span></div>
+    <div class="source visual-source"><strong>[지도 자료]</strong><svg viewBox="0 0 760 190" role="img" aria-label="봉오동과 청산리 일대 독립군 전투 이동 지도"><rect width="760" height="190" rx="8" fill="#eef7ed" stroke="#86a884" stroke-width="2"/><path d="M55 145 Q180 30 315 125 T530 50 T720 125" fill="none" stroke="#78a06d" stroke-width="28" opacity=".35"/><path d="M80 145 C210 120 245 50 385 80 S570 160 690 68" fill="none" stroke="#3182ce" stroke-width="4" stroke-dasharray="10 7"/><circle cx="175" cy="112" r="8" fill="#b91c1c"/><circle cx="520" cy="112" r="8" fill="#b91c1c"/><text x="170" y="98" text-anchor="middle" font-size="15" font-weight="700">봉오동</text><text x="520" y="98" text-anchor="middle" font-size="15" font-weight="700">청산리</text><text x="68" y="28" font-size="15" fill="#1e3a8a">독립군 이동 경로</text><text x="570" y="168" font-size="13" fill="#475569">만주 일대 (개념도)</text></svg><p class="visual-caption">독립군의 주요 전투 지역과 이동 경로를 나타낸 개념도</p></div>
+    <p>자료의 전투를 순서대로 바르게 나열한 것은?</p>
+    <ol class="choices"><li>① 청산리 전투 → 봉오동 전투</li><li>② 봉오동 전투 → 청산리 대첩</li><li>③ 쌍성보 전투 → 대전자령 전투</li><li>④ 대전자령 전투 → 청산리 대첩</li><li>⑤ 봉오동 전투 → 한국광복군 창설</li></ol>
+  </section>
+
+  <section class="q"><div class="qhead"><span class="num">11.</span><span class="badge hard">상</span></div>
+    <div class="source"><strong>[자료]</strong>일본은 중일 전쟁 이후 “황국 신민 서사”를 외우게 하고, 신사 참배와 일본식 성명 사용을 강요하였다. 학교에서는 조선어 교육을 줄이고 일본어 사용을 확대하였다.</div>
+    <p>자료에 나타난 정책의 공통된 목적은?</p>
+    <ol class="choices"><li>① 조선인의 경제적 자립 지원</li><li>② 조선인의 민족 정체성 말살과 전쟁 동원</li><li>③ 조선인의 참정권 확대</li><li>④ 조선인의 토지 소유권 보장</li><li>⑤ 조선인의 국제 교류 촉진</li></ol>
+  </section>
+
+  <section class="q"><div class="qhead"><span class="num">12.</span><span class="badge hard">상</span></div>
+    <div class="source"><strong>[자료]</strong>일본은 전쟁이 확대되자 국가 총동원 법령을 적용하여 인력·물자·자금을 통제하였다. 조선인에게도 징용, 징병, 근로 정신대 등을 강요하였다.</div>
+    <p>이 정책이 본격화된 시기의 국제 정세로 옳은 것은?</p>
+    <ol class="choices"><li>① 러일 전쟁 직후</li><li>② 제1차 세계 대전 직후</li><li>③ 중일 전쟁과 태평양 전쟁이 이어지던 시기</li><li>④ 냉전이 끝난 이후</li><li>⑤ 한국 전쟁 휴전 이후</li></ol>
+  </section>
+
+  <section class="q"><div class="qhead"><span class="num">13.</span><span class="badge hard">상</span></div>
+    <div class="source"><strong>[자료]</strong>1940년 충칭에서 창설된 이 부대는 대한민국 임시 정부의 군대로서 연합국과 공동 작전을 추진하였다. 일부 대원은 인도·미얀마 전선에 파견되어 대일 선전과 정보 활동을 벌였다.</div>
+    <p>자료의 부대에 대한 설명으로 옳은 것은?</p>
+    <ol class="choices"><li>① 의열단이 개편된 조선 혁명군이다.</li><li>② 만주에서 활동한 동북 항일 연군이다.</li><li>③ 대한민국 임시 정부의 한국광복군이다.</li><li>④ 국내에서 조직된 조선 의용대이다.</li><li>⑤ 해방 후 창설된 국군이다.</li></ol>
+  </section>
+
+  <section class="q"><div class="qhead"><span class="num">14.</span><span class="badge hard">상</span></div>
+    <div class="source visual-source"><strong>[국제 회담 사진 자료를 재구성한 그림]</strong><svg viewBox="0 0 760 170" role="img" aria-label="연합국 대표들이 한국의 독립을 논의하는 국제 회담 장면"><rect width="760" height="170" rx="8" fill="#e8eef5"/><rect x="92" y="112" width="576" height="24" rx="5" fill="#6b7280"/><circle cx="245" cy="83" r="25" fill="#b6c7d9"/><circle cx="380" cy="83" r="25" fill="#d7b899"/><circle cx="515" cy="83" r="25" fill="#c5d3be"/><path d="M220 112 Q245 94 270 112 M355 112 Q380 94 405 112 M490 112 Q515 94 540 112" fill="#64748b"/><text x="245" y="42" text-anchor="middle" font-size="14" font-weight="700">미국</text><text x="380" y="42" text-anchor="middle" font-size="14" font-weight="700">영국</text><text x="515" y="42" text-anchor="middle" font-size="14" font-weight="700">중국</text><text x="380" y="157" text-anchor="middle" font-size="14" fill="#334155">한국의 독립을 논의한 연합국 회담</text></svg><p class="visual-caption">실제 사진을 대신한 학습용 재구성 이미지이며, 회담의 핵심 발언을 판단하는 자료</p><div style="margin-top:7px">“적당한 시기에 조선이 자유롭고 독립되어야 한다.”</div></div>
+    <p>자료의 두 내용이 포함된 국제 회의와 가장 관련 깊은 것은?</p>
+    <ol class="choices"><li>① 카이로 회담</li><li>② 얄타 회담</li><li>③ 포츠담 회담</li><li>④ 워싱턴 회의</li><li>⑤ 베르사유 회의</li></ol>
+  </section>
+
+  <section class="q"><div class="qhead"><span class="num">15.</span><span class="badge easy">하</span></div>
+    <div class="source"><strong>[자료]</strong>1945년 8월 15일 일본이 연합국에 항복하였다. 조선 민중은 독립을 맞이하였지만, 한반도에는 곧 새로운 군정이 실시되었다.</div>
+    <p>광복 직후 남한에 설치된 군정으로 옳은 것은?</p>
+    <ol class="choices"><li>① 소련군정</li><li>② 미군정</li><li>③ 조선 총독부</li><li>④ 대한민국 정부</li><li>⑤ 고려 민주 연방 정부</li></ol>
+  </section>
+
+  <section class="q"><div class="qhead"><span class="num">16.</span><span class="badge mid">중</span></div>
+    <div class="source"><strong>[자료]</strong>해방 직후 여운형 등이 중심이 되어 건국 준비를 위한 조직을 만들었고, 전국 각지에 인민 위원회가 조직되었다. 이후 미군정은 이 조직을 공식 정부로 인정하지 않았다.</div>
+    <p>자료의 조직은?</p>
+    <ol class="choices"><li>① 조선 건국 동맹</li><li>② 조선 건국 준비 위원회</li><li>③ 한국 민주당</li><li>④ 반민족 행위 특별 조사 위원회</li><li>⑤ 남조선 노동당</li></ol>
+  </section>
+
+  <section class="q"><div class="qhead"><span class="num">17.</span><span class="badge hard">상</span></div>
+    <div class="source"><strong>[자료]</strong>모스크바에서 미국·영국·소련의 외무 장관이 한국 문제를 논의하였다. 결정 내용에는 임시 민주 정부 수립, 미·소 공동 위원회 개최, 일정 기간 신탁 통치 협의가 포함되었다.</div>
+    <p>자료에 대한 설명으로 옳은 것은?</p>
+    <ol class="choices"><li>① 회의 직후 남북한 총선거가 실시되었다.</li><li>② 신탁 통치 문제를 둘러싸고 국내에서 격렬한 논쟁이 일어났다.</li><li>③ 이 결정으로 대한민국 정부가 즉시 수립되었다.</li><li>④ 일본의 식민 통치를 합법화하였다.</li><li>⑤ 유엔 한국 임시 위원단을 파견하였다.</li></ol>
+  </section>
+
+  <section class="q"><div class="qhead"><span class="num">18.</span><span class="badge hard">상</span></div>
+    <div class="source"><strong>[자료]</strong>좌우 세력이 분열을 극복하고 통일 정부를 세우기 위해 공동 성명에 합의하였다. 토지 개혁, 친일파 처벌, 주요 산업 국유화 등이 논의되었으나 정치적 대립 속에서 오래 지속되지 못하였다.</div>
+    <p>자료에 해당하는 운동은?</p>
+    <ol class="choices"><li>① 물산 장려 운동</li><li>② 좌우 합작 운동</li><li>③ 민립 대학 설립 운동</li><li>④ 국채 보상 운동</li><li>⑤ 농촌 계몽 운동</li></ol>
+  </section>
+
+  <section class="q"><div class="qhead"><span class="num">19.</span><span class="badge hard">상</span></div>
+    <div class="source"><strong>[자료]</strong>유엔은 한반도에서 인구 비례에 따른 총선거를 실시할 것을 결의하였다. 그러나 북쪽 지역에 선거 감시단이 들어가지 못하자, 선거가 가능한 지역에서 먼저 총선거가 실시되었다.</div>
+    <p>자료 이후의 사실로 옳은 것은?</p>
+    <ol class="choices"><li>① 1948년 5월 10일 남한 총선거가 실시되었다.</li><li>② 1945년 8월 15일 대한민국 정부가 수립되었다.</li><li>③ 1950년 6월 25일 유엔 총회가 개최되었다.</li><li>④ 1919년 3월 1일 제헌 국회가 구성되었다.</li><li>⑤ 1946년 모스크바 3국 외상 회의가 개최되었다.</li></ol>
+  </section>
+
+  <section class="q"><div class="qhead"><span class="num">20.</span><span class="badge hard">상</span></div>
+    <div class="source visual-source"><strong>[연표 자료]</strong><svg viewBox="0 0 760 125" role="img" aria-label="1945년부터 1948년까지의 한국 현대사 사건 연표"><line x1="70" y1="65" x2="690" y2="65" stroke="#1d4ed8" stroke-width="5"/><g fill="#fff" stroke="#1d4ed8" stroke-width="3"><circle cx="100" cy="65" r="12"/><circle cx="245" cy="65" r="12"/><circle cx="390" cy="65" r="12"/><circle cx="535" cy="65" r="12"/><circle cx="665" cy="65" r="12"/></g><g font-size="13" text-anchor="middle" fill="#172033"><text x="100" y="31">광복</text><text x="245" y="103">모스크바 회의</text><text x="390" y="31">유엔 임시 위원단</text><text x="535" y="103">5·10 총선거</text><text x="665" y="31">정부 수립</text><text x="100" y="88">1945</text><text x="245" y="48">1945</text><text x="390" y="88">1947</text><text x="535" y="48">1948.5</text><text x="665" y="88">1948.8</text></g></svg><p class="visual-caption">1945~1948년 주요 사건의 흐름을 나타낸 연표</p><div style="margin-top:7px">ㄱ. 대한민국 정부 수립　ㄴ. 5·10 총선거　ㄷ. 모스크바 3국 외상 회의　ㄹ. 광복　ㅁ. 유엔 한국 임시 위원단 파견</div></div>
+    <p>올바른 순서는?</p>
+    <ol class="choices"><li>① ㄹ-ㄷ-ㅁ-ㄴ-ㄱ</li><li>② ㄷ-ㄹ-ㅁ-ㄴ-ㄱ</li><li>③ ㄹ-ㅁ-ㄷ-ㄴ-ㄱ</li><li>④ ㄹ-ㄷ-ㄴ-ㅁ-ㄱ</li><li>⑤ ㄷ-ㅁ-ㄹ-ㄴ-ㄱ</li></ol>
+  </section>
+
+  <section class="q"><div class="qhead"><span class="num">21.</span><span class="badge easy">하</span></div>
+    <div class="source visual-source pdf-image-source"><strong>[사진 자료]</strong><img class="pdf-image" src="pdf-images/page-002-image-03.png" alt="식민지 시기의 사진 자료"><svg viewBox="0 0 760 150" aria-hidden="true"><rect width="760" height="150" fill="#eef2f7"/></svg></div>
+    <p>이 이미지가 상징하는 일제의 통치 방식에 대한 설명으로 옳은 것은?</p>
+    <ol class="choices"><li>① 조선인의 자치권을 확대하였다.</li><li>② 조선 총독이 입법·행정·사법의 권한을 행사하였다.</li><li>③ 조선인의 참정권을 보장하였다.</li><li>④ 민족 대표가 총독부의 정책을 결정하였다.</li><li>⑤ 지방 의회가 식민 통치를 대신하였다.</li></ol>
+  </section>
+
+  <section class="q"><div class="qhead"><span class="num">22.</span><span class="badge mid">중</span></div>
+    <div class="source visual-source pdf-image-source"><strong>[건물 사진 자료]</strong><img class="pdf-image" src="pdf-images/page-002-image-04.png" alt="식민지 시기에 세워진 근대식 건물 사진 자료"><svg viewBox="0 0 760 160" aria-hidden="true"><rect width="760" height="160" fill="#fff7ed"/></svg></div>
+    <p>이와 같은 근대식 건물이 식민지 시기에 세워진 배경에 대한 설명으로 가장 적절한 것은?</p>
+    <ol class="choices"><li>① 식민 통치와 경제 수탈을 위한 행정·금융 기관을 설치하였다.</li><li>② 조선인의 자치 정부 청사로만 사용하였다.</li><li>③ 농민에게 토지를 나누어 주기 위한 기관이었다.</li><li>④ 독립운동가들이 비밀리에 세운 학교였다.</li><li>⑤ 해방 이후에 처음 건립된 국회 의사당이었다.</li></ol>
+  </section>
+
+  <section class="q"><div class="qhead"><span class="num">23.</span><span class="badge mid">중</span></div>
+    <div class="source visual-source pdf-image-source"><strong>[인물 사진 자료]</strong><img class="pdf-image" src="pdf-images/page-004-image-14.png" alt="한국 근현대사 관련 인물 사진 자료"><svg viewBox="0 0 760 170" aria-hidden="true"><rect width="760" height="170" fill="#e0f2fe"/></svg></div>
+    <p>이러한 인물 사진 자료를 통해 확인할 수 있는 한국 독립운동의 특징으로 옳은 것은?</p>
+    <ol class="choices"><li>① 다양한 인물과 단체가 국내외에서 독립운동을 전개하였다.</li><li>② 모든 독립운동은 한 인물이 단독으로 주도하였다.</li><li>③ 독립운동은 광복 이후에 처음 시작되었다.</li><li>④ 독립운동은 일본 정부의 공식 지원을 받았다.</li><li>⑤ 독립운동은 정치 활동 없이 문화 활동만을 의미하였다.</li></ol>
+  </section>
+
+  <section class="q"><div class="qhead"><span class="num">24.</span><span class="badge hard">상</span></div>
+    <div class="source visual-source pdf-image-source"><strong>[지도 자료]</strong><img class="pdf-image" src="pdf-images/page-004-map.png" alt="1910년대 국내외 독립운동 기지를 나타낸 지도"><svg viewBox="0 0 760 165" aria-hidden="true"><rect width="760" height="165" fill="#dbeafe"/></svg></div>
+    <p>지도에 나타난 1910년대 국내외 독립운동에 대한 설명으로 옳은 것은?</p>
+    <ol class="choices"><li>① 일본의 식민 통치에 협력하는 친일 단체가 각 지역에 조직되었다.</li><li>② 독립운동가들은 국내 활동만 고집하고 국외로 근거지를 옮기지 않았다.</li><li>③ 모든 독립운동 단체가 하나의 통일된 지휘 체계 아래 움직였다.</li><li>④ 만주·연해주 등지에 독립운동 기지를 세우고 독립 전쟁을 준비하였다.</li><li>⑤ 1940년대에 처음으로 국외 독립운동 기지가 건설되었다.</li></ol>
+  </section>
+
+  <section class="q"><div class="qhead"><span class="num">25.</span><span class="badge hard">상</span></div>
+    <div class="source visual-source pdf-image-source"><strong>[인물 사진 자료]</strong><img class="pdf-image" src="pdf-images/page-004-image-16.png" alt="독립운동가 임병찬의 사진"><svg viewBox="0 0 760 170" aria-hidden="true"><rect width="760" height="170" fill="#f1f5f9"/></svg></div>
+    <p>사진의 인물인 임병찬의 활동으로 옳은 것은?</p>
+    <ol class="choices"><li>① 신간회를 조직하여 민족 협동 전선을 구축하였다.</li><li>② 의열단을 조직하여 식민 통치 기관을 공격하였다.</li><li>③ 독립의군부를 조직하고 국권 반환 운동을 추진하였다.</li><li>④ 한국광복군을 창설하여 연합국과 공동 작전을 전개하였다.</li><li>⑤ 조선어 학회를 이끌며 우리말 사전을 편찬하였다.</li></ol>
+  </section>
+
+  <section class="q"><div class="qhead"><span class="num">26.</span><span class="badge easy">하</span></div>
+    <div class="source"><strong>[자료]</strong>일본은 1910년대 조선인의 토지 소유 관계를 조사하고 토지 대장을 작성하였다.</div>
+    <p>자료에 해당하는 사업은?</p>
+    <ol class="choices"><li>① 토지 조사 사업</li><li>② 산미 증식 계획</li><li>③ 농촌 진흥 운동</li><li>④ 회사령 폐지</li><li>⑤ 국가 총동원법</li></ol>
+  </section>
+  <section class="q"><div class="qhead"><span class="num">27.</span><span class="badge mid">중</span></div>
+    <div class="source"><strong>[자료]</strong>1920년대 학생들은 민족 차별 교육에 항의하여 동맹 휴학과 시위를 벌였다. 이 운동은 광주에서 시작되어 전국으로 확산되었다.</div>
+    <p>자료에 해당하는 운동은?</p>
+    <ol class="choices"><li>① 6·10 만세 운동</li><li>② 광주 학생 항일 운동</li><li>③ 형평 운동</li><li>④ 물산 장려 운동</li><li>⑤ 국채 보상 운동</li></ol>
+  </section>
+  <section class="q"><div class="qhead"><span class="num">28.</span><span class="badge mid">중</span></div>
+    <div class="source"><strong>[자료]</strong>대한민국 임시 정부는 독립운동 자금을 마련하고 독립운동가를 연결하기 위해 비밀 연락망을 운영하였다.</div>
+    <p>자료와 관련된 임시 정부의 활동으로 옳은 것은?</p>
+    <ol class="choices"><li>① 연통제와 교통국을 운영하였다.</li><li>② 조선 총독부의 기관지를 발행하였다.</li><li>③ 일본의 회사 설립을 허가하였다.</li><li>④ 신사 참배를 장려하였다.</li><li>⑤ 미군정의 행정 명령을 집행하였다.</li></ol>
+  </section>
+  <section class="q"><div class="qhead"><span class="num">29.</span><span class="badge hard">상</span></div>
+    <div class="source"><strong>[자료]</strong>해방 후 한반도 문제를 논의하기 위해 미·소 공동 위원회가 열렸으나, 임시 정부에 참여할 정당과 사회단체의 범위를 둘러싼 대립으로 결렬되었다.</div>
+    <p>자료와 관련된 역사적 상황으로 옳은 것은?</p>
+    <ol class="choices"><li>① 모스크바 3국 외상 회의 결정의 이행을 둘러싼 갈등이었다.</li><li>② 3·1 운동 직후 상하이에 임시 정부가 세워졌다.</li><li>③ 일본이 조선을 병합하기 전에 발생한 사건이었다.</li><li>④ 5·10 총선거 이후에 처음 개최되었다.</li><li>⑤ 한국 전쟁 휴전 협정의 결과로 열렸다.</li></ol>
+  </section>
+  <section class="q"><div class="qhead"><span class="num">30.</span><span class="badge hard">상</span></div>
+    <div class="source"><strong>[자료]</strong>1948년 제헌 국회는 헌법을 제정하고 대통령을 선출하였다. 같은 해 8월 15일 새로운 정부가 출범하였다.</div>
+    <p>자료에 해당하는 정부의 성격으로 옳은 것은?</p>
+    <ol class="choices"><li>① 대한민국 임시 정부의 망명 정부였다.</li><li>② 유엔의 결의와 감독 아래 수립된 대한민국 정부였다.</li><li>③ 조선 총독부를 계승한 식민지 정부였다.</li><li>④ 미군정이 해산하지 않고 그대로 전환된 정부였다.</li><li>⑤ 남북한 공동 선거로 수립된 단일 정부였다.</li></ol>
+  </section>
+
+  <section class="answer">
+    <h2>정답 및 해설</h2>
+    <div class="answer-grid">
+      <div>1②</div><div>2④</div><div>3①</div><div>4②</div>
+      <div>5①</div><div>6①</div><div>7②</div><div>8②</div>
+      <div>9②</div><div>10②</div><div>11②</div><div>12③</div>
+      <div>13③</div><div>14①</div><div>15②</div><div>16②</div>
+      <div>17②</div><div>18②</div><div>19①</div><div>20①</div>
+      <div>21②</div><div>22①</div><div>23①</div><div>24④</div><div>25③</div>
+    </div>
+    <details><summary>1~5번 해설</summary><div class="explain">1. 1910년대 헌병 경찰과 태형은 무단 통치의 특징이다. 2. 토지 조사 사업은 신고주의를 이용하여 총독부의 토지 소유를 늘리고 농민의 경작권을 약화시켰다. 3. 3·1 운동을 계기로 대한민국 임시 정부가 수립되었다. 4. 1920년대의 문화 통치는 제한적 유화 정책이었으며 탄압은 계속되었다. 5. 산미 증식 계획은 쌀 반출을 확대하여 조선 농민의 식량 사정을 악화시켰다.</div></details>
+    <details><summary>6~10번 해설</summary><div class="explain">6. 물산 장려 운동과 광주 학생 항일 운동의 조합이다. 7. 신간회는 민족주의와 사회주의 세력의 연대 단체였다. 8. 의열단의 행동 강령을 정리한 인물은 신채호이다. 9. 임시 정부는 3·1 운동 이후 상하이에서 수립되었다. 10. 봉오동 전투(1920) 뒤 청산리 대첩(1920)이 전개되었다.</div></details>
+    <details><summary>11~15번 해설</summary><div class="explain">11. 황국 신민화와 일본어 강요는 민족 말살 통치의 사례이다. 12. 국가 총동원 체제는 중일 전쟁 이후 전쟁 수행을 위해 강화되었다. 13. 한국광복군은 1940년 충칭에서 창설되었다. 14. 카이로 회담은 한국의 독립을 최초로 국제적으로 약속하였다. 15. 광복 직후 38도선 이남에는 미군정이 설치되었다.</div></details>
+    <details><summary>16~20번 해설</summary><div class="explain">16. 해방 직후 건국 준비 위원회가 조직되었다. 17. 모스크바 3국 외상 회의 결정은 신탁 통치 논쟁과 미·소 공동 위원회 문제를 낳았다. 18. 좌우 합작 운동은 통일 정부 수립을 목표로 하였다. 19. 유엔 결의 뒤 1948년 5월 10일 남한 총선거가 실시되었다. 20. 광복(1945) → 모스크바 회의(1945) → 유엔 임시 위원단(1947) → 5·10 총선거(1948.5) → 정부 수립(1948.8)의 순서이다.</div></details>
+    <details><summary>21~25번 해설</summary><div class="explain">21. 조선 총독은 입법·행정·사법에 걸친 강력한 권한을 행사하였다. 22. 식민지 시기의 근대식 건물 가운데에는 통치와 경제 수탈을 위한 행정·금융 기관이 있었다. 23. 독립운동은 다양한 인물과 단체가 국내외에서 전개한 민족 운동이었다. 24. 1910년대 독립운동가들은 만주·연해주 등지에 독립운동 기지를 세우고 독립군을 양성하여 독립 전쟁을 준비하였다. 25. 임병찬은 1910년대 독립의군부를 조직하고 일본에 국권 반환을 요구하는 운동을 추진하였다.</div></details>
+  </section>
+</article></main>
+<button class="print" onclick="window.print()" style="display:none">인쇄하기</button>
+<script>
+  const answerKey = [2,4,1,2,1,1,2,2,2,2,2,3,3,1,2,2,2,2,1,1,2,1,1,4,3,1,2,1,1,2];
+  const explanations = [
+    "1910년대에는 헌병 경찰과 태형을 앞세운 무단 통치가 시행되었습니다.",
+    "토지 조사 사업은 총독부의 토지 소유를 늘리고 농민의 경작권을 약화시켜 소작농화를 심화시켰습니다.",
+    "3·1 운동을 계기로 상하이에 대한민국 임시 정부가 수립되었습니다.",
+    "1920년대의 문화 통치는 제한적인 유화 정책이었지만 치안 유지법 등으로 탄압은 계속되었습니다.",
+    "산미 증식 계획은 쌀 반출을 늘려 조선 농민의 식량 사정을 악화시켰습니다.",
+    "A는 물산 장려 운동, B는 광주 학생 항일 운동에 해당합니다.",
+    "신간회는 1927년 민족주의 세력과 사회주의 세력 일부가 결성한 민족 협동 전선 단체입니다.",
+    "의열단의 행동 강령인 조선 혁명 선언을 작성한 인물은 신채호입니다.",
+    "대한민국 임시 정부는 3·1 운동 이후 상하이에서 수립되었습니다.",
+    "봉오동 전투 뒤 청산리 대첩이 전개되어 독립군이 일본군을 크게 격파했습니다.",
+    "황국 신민화, 신사 참배, 일본식 성명 강요는 민족 말살과 전쟁 동원을 위한 정책입니다.",
+    "국가 총동원 체제는 중일 전쟁 이후 태평양 전쟁 시기에 강화되었습니다.",
+    "한국광복군은 1940년 충칭에서 창설된 대한민국 임시 정부의 군대입니다.",
+    "카이로 회담에서 한국을 적절한 시기에 독립시킬 것을 약속했습니다.",
+    "광복 직후 38도선 이남에는 미군정이 설치되었습니다.",
+    "해방 직후 여운형 등을 중심으로 조선 건국 준비 위원회가 조직되었습니다.",
+    "모스크바 3국 외상 회의 결정은 신탁 통치 문제와 미·소 공동 위원회 논쟁을 일으켰습니다.",
+    "좌우 합작 운동은 좌우 세력의 분열을 극복하고 통일 정부를 세우려는 운동이었습니다.",
+    "유엔 결의에 따라 1948년 5월 10일 남한에서 총선거가 실시되었습니다.",
+    "시간 순서는 광복 → 모스크바 회의 → 유엔 임시 위원단 → 5·10 총선거 → 대한민국 정부 수립입니다.",
+    "조선 총독은 입법·행정·사법에 걸친 강력한 권한을 행사하여 식민 통치를 지휘했습니다.",
+    "식민지 시기의 근대식 건물 가운데에는 통치와 경제 수탈을 위한 행정·금융 기관이 있었습니다.",
+    "독립운동은 다양한 인물과 단체가 국내외에서 전개한 민족 운동이었습니다.",
+    "1910년대 독립운동가들은 만주·연해주 등지에 독립운동 기지를 세우고 독립군을 양성하여 독립 전쟁을 준비했습니다.",
+    "임병찬은 1910년대 독립의군부를 조직하고 일본에 국권 반환을 요구하는 운동을 추진했습니다.",
+    "자료의 사업은 토지 소유 관계를 조사한 토지 조사 사업입니다.",
+    "광주에서 시작되어 전국으로 확산된 학생 운동은 광주 학생 항일 운동입니다.",
+    "대한민국 임시 정부는 국내외를 연결하기 위해 연통제와 교통국을 운영했습니다.",
+    "미·소 공동 위원회는 모스크바 3국 외상 회의에서 결정한 임시 민주 정부 수립 방안을 논의했습니다.",
+    "1948년 8월 15일 수립된 대한민국 정부는 유엔의 결의와 감독 아래 수립된 정부입니다."
+  ];
+  let completed = 0, score = 0;
+  const questionNodes = [...document.querySelectorAll(".q")];
+  const eraInfo = [
+    ["식민 통치", "1910년대 무단 통치부터 민족 말살 정책까지"],
+    ["민족 운동", "3·1 운동, 임시 정부, 무장 독립 투쟁"],
+    ["광복과 정부 수립", "해방 정국과 대한민국 정부 수립"]
+  ];
+  const answerSection = document.querySelector(".answer");
+  const dashboard = document.getElementById("dashboard");
+  const notice = document.querySelector(".notice");
+  const progressBar = document.querySelector(".progress");
+  const problemNav = document.getElementById("problemNav");
+  const problemLabel = document.getElementById("problemLabel");
+  const panels = eraInfo.map((era, eraIndex) => {
+    const panel = document.createElement("section");
+    panel.className = "era-panel";
+    panel.id = "era-" + eraIndex;
+    panel.innerHTML = '<div class="era-title"><h2>' + String(eraIndex + 1).padStart(2, "0") + " · " + era[0] + '</h2><p>' + era[1] + ' <span class="question-count">10문제 챌린지</span></p></div><div class="era-tip">오늘의 역사 탐험을 시작해 볼까요? 자료를 꼼꼼히 읽고 가장 알맞은 답을 골라 보세요!</div>';
+    answerSection.before(panel);
+    return panel;
+  });
+  questionNodes.forEach((question, index) => panels[Math.floor(index / 10)].append(question));
+  answerSection.style.display = "none";
+  function showEra(eraIndex) {
+    document.querySelectorAll(".era-panel").forEach(panel => panel.classList.remove("active"));
+    document.getElementById("era-" + eraIndex).classList.add("active");
+    dashboard.style.display = "none";
+    notice.style.display = "none";
+    progressBar.style.display = "flex";
+    problemNav.classList.add("show");
+    problemLabel.textContent = eraInfo[eraIndex][0] + " · 문제 풀이";
+    document.getElementById("era-" + eraIndex).scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  document.querySelectorAll(".era-card").forEach(card => card.addEventListener("click", () => showEra(Number(card.dataset.era))));
+  document.getElementById("backToMain").addEventListener("click", () => {
+    document.querySelectorAll(".era-panel").forEach(panel => panel.classList.remove("active"));
+    dashboard.style.display = "grid";
+    notice.style.display = "block";
+    progressBar.style.display = "none";
+    problemNav.classList.remove("show");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+  progressBar.style.display = "none";
+  questionNodes.forEach((question, index) => {
+    const choices = [...question.querySelectorAll(".choices li")];
+    const feedback = document.createElement("div");
+    feedback.className = "feedback";
+    feedback.setAttribute("role", "status");
+    question.querySelector(".choices").after(feedback);
+    choices.forEach((choice, choiceIndex) => {
+      choice.setAttribute("role", "button");
+      choice.setAttribute("tabindex", "0");
+      const select = () => {
+        if (question.dataset.answered) return;
+        question.dataset.answered = "true";
+        completed++;
+        const selected = choiceIndex + 1;
+        const correct = selected === answerKey[index];
+        if (correct) {
+          score += 5;
+          choice.classList.add("correct");
+          feedback.className = "feedback show correct";
+          feedback.innerHTML = "<strong>정답입니다! (+5점)</strong>" + explanations[index];
+        } else {
+          choice.classList.add("wrong");
+          choices[answerKey[index] - 1].classList.add("correct");
+          feedback.className = "feedback show wrong";
+          feedback.innerHTML = "<strong>오답입니다. 정답은 " + answerKey[index] + "번입니다.</strong>선택한 선지는 자료의 핵심 내용과 맞지 않습니다. " + explanations[index];
+        }
+        choices.forEach(item => item.setAttribute("aria-disabled", "true"));
+        updateProgress();
+      };
+      choice.addEventListener("click", select);
+      choice.addEventListener("keydown", event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); select(); } });
+    });
+  });
+  function updateProgress() {
+    document.getElementById("progressText").textContent = "풀이한 문제 " + completed + " / 30";
+    document.getElementById("scoreText").firstChild.textContent = "현재 점수 " + score + "점 ";
+    document.getElementById("dashProgress").textContent = Math.round(completed / 30 * 100) + "%";
+    document.getElementById("dashScore").textContent = score + "점 · 30문항";
+    document.querySelectorAll(".era-card").forEach((card, eraIndex) => {
+      const done = questionNodes.slice(eraIndex * 10, eraIndex * 10 + 10).filter(question => question.dataset.answered).length;
+      card.querySelector(".era-progress").textContent = done + " / 10 완료";
+    });
+  }
+  function resetQuiz() {
+    completed = 0; score = 0;
+    document.querySelectorAll(".q").forEach(question => {
+      delete question.dataset.answered;
+      question.querySelectorAll(".choices li").forEach(choice => {
+        choice.classList.remove("correct", "wrong");
+        choice.setAttribute("aria-disabled", "false");
+      });
+      const feedback = question.querySelector(".feedback");
+      feedback.className = "feedback";
+      feedback.textContent = "";
+    });
+    updateProgress();
+    window.scrollTo({top: 0, behavior: "smooth"});
+  }
+</script>
+</body>
+</html>
